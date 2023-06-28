@@ -10,6 +10,8 @@ import {
   Image,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { Svg, Circle, Rect, Line } from "react-native-svg";
+import { SvgXml } from "react-native-svg";
 export default function PostsScreen() {
   const styles = StyleSheet.create({
     container: {
@@ -71,7 +73,7 @@ export default function PostsScreen() {
     sideBar: {
       position: "absolute",
       display: "flex",
-      flexDirection:'row',
+      flexDirection: "row",
       alignItems: "center",
       justifyContent: "space-around",
       paddingTop: 9,
@@ -97,37 +99,52 @@ export default function PostsScreen() {
       alignItems: "center",
       justifyContent: "center",
     },
-    buttonCvadrats:{
-        width:40,
-        height:40
-    }
+    buttonCvadrats: {
+      width: 40,
+      height: 40,
+    },
+    mainKvadrat: {
+      width: 24,
+      height: 24,
+      display: "flex",
+      flexDirection: "row",
+      flexWrap: "wrap",
+    },
   });
+  const imgContacts = require('../images/user.png')
+  const imgKvadrat = require('../images/grid.png')
   return (
-    <View style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.mainText}>Публікації</Text>
-      </View>
-      <View style={styles.main}>
-        <View style={styles.boxForImg}>
-          <Image
-            source={{
-              uri: "https://www.studiorent.ru/upload_data/9964/upldQ74OZi.jpg",
-            }}
-            style={{ width: 60, borderRadius: 16, height: 60 }}
-          />
-          <View style={styles.contWrapForText}>
-            <Text style={styles.nameSurname}>Natali Romanova</Text>
-            <Text style={styles.emailText}>email@example.com</Text>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.mainText}>Публікації</Text>
+        </View>
+        <View style={styles.main}>
+          <View style={styles.boxForImg}>
+            <Image
+              source={{
+                uri: "https://www.studiorent.ru/upload_data/9964/upldQ74OZi.jpg",
+              }}
+              style={{ width: 60, borderRadius: 16, height: 60 }}
+            />
+            <View style={styles.contWrapForText}>
+              <Text style={styles.nameSurname}>Natali Romanova</Text>
+              <Text style={styles.emailText}>email@example.com</Text>
+            </View>
           </View>
         </View>
+        <View style={styles.sideBar}>
+          <TouchableOpacity style={styles.mainKvadrat}>
+          <Image style={{ width: 24, height: 24 }} source={imgKvadrat}></Image>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.mainButton}>
+            <Text style={styles.crossInButton}>+</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image style={{ width: 24, height: 24 }} source={imgContacts}></Image>
+          </TouchableOpacity>
+        </View>
       </View>
-      <View style={styles.sideBar}>
-        <TouchableOpacity style={styles.buttonCvadrats}></TouchableOpacity>
-        <TouchableOpacity style={styles.mainButton}>
-          <Text style={styles.crossInButton}>+</Text>
-        </TouchableOpacity>
-        <TouchableOpacity ></TouchableOpacity>
-      </View>
-    </View>
+    </TouchableWithoutFeedback>
   );
 }

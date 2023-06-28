@@ -15,6 +15,7 @@ export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigatation = useNavigation()
   const [passwordVal, setPasswordVal] = useState('');
+  const [email,setEmail] = useState('')
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
@@ -129,6 +130,9 @@ export default function LoginScreen() {
             placeholder="Адреса електронної пошти"
             placeholderTextColor="#BDBDBD"
             style={styles.inputRegistr}
+            onChange={(evt) => {
+              setEmail(evt.target.value)
+            }}
           ></TextInput>
 
 
@@ -154,7 +158,7 @@ export default function LoginScreen() {
           </View>
 
 
-          <TouchableOpacity style={styles.buttonRegistr}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={console.log(`${email},${passwordVal}`)}>
             <Text style={styles.whiteColor}>Увійти</Text>
           </TouchableOpacity>
 

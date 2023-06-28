@@ -13,6 +13,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 export default function RegistrationScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [email,setEmail] = useState(null)
+  const [login,setLogin] = useState(null)
   const [passwordVal, setPasswordVal] = useState('');
   const navigation = useNavigation()
   const styles = StyleSheet.create({
@@ -141,12 +143,18 @@ export default function RegistrationScreen() {
             placeholder="Логін"
             placeholderTextColor="#BDBDBD"
             style={styles.inputRegistr}
+            onChange={(evt) => {
+              setLogin(evt.target.value)
+            }}
           ></TextInput>
 
           <TextInput
             placeholder="Адреса електорнної пошти"
             placeholderTextColor="#BDBDBD"
             style={styles.inputRegistr}
+            onChange={(evt) => {
+              setEmail(evt.target.value)
+            }}
           ></TextInput>
           <View style={styles.contPassword}>
             <TextInput
@@ -163,7 +171,7 @@ export default function RegistrationScreen() {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.buttonRegistr} onPress={() => {
-          console.log('Registr')
+          console.log(`${login},${email},${passwordVal}`)
         }}>
             <Text style={styles.whiteColor}>Зареєструватися</Text>
           </TouchableOpacity>
