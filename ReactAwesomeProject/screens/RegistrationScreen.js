@@ -162,7 +162,9 @@ export default function RegistrationScreen() {
               <Text>{passwordVisible ? 'Скрыть' : 'Показать'}</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.buttonRegistr}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={() => {
+          console.log('Registr')
+        }}>
             <Text style={styles.whiteColor}>Зареєструватися</Text>
           </TouchableOpacity>
           <Text onPress={linkFunc} style={styles.linkColor}>

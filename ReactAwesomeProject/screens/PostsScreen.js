@@ -126,7 +126,7 @@ export default function PostsScreen() {
         <TouchableOpacity style={styles.mainButton}>
           <Text style={styles.crossInButton}>+</Text>
         </TouchableOpacity>
-        <TouchableOpacity></TouchableOpacity>
+        <TouchableOpacity ></TouchableOpacity>
       </View>
     </View>
   );
