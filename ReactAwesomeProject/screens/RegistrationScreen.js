@@ -171,7 +171,7 @@ export default function RegistrationScreen() {
             </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.buttonRegistr} onPress={() => {
-          console.log(`${login},${email},${passwordVal}`)
+          navigation.navigate('Login')
         }}>
             <Text style={styles.whiteColor}>Зареєструватися</Text>
           </TouchableOpacity>

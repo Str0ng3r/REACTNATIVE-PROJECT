@@ -12,6 +12,7 @@ import {
 import { StatusBar } from "expo-status-bar";
 import { Svg, Circle, Rect, Line } from "react-native-svg";
 import { SvgXml } from "react-native-svg";
+import { useNavigation } from "@react-navigation/native";
 export default function PostsScreen() {
   const styles = StyleSheet.create({
     container: {
@@ -23,12 +24,13 @@ export default function PostsScreen() {
     },
     header: {
       width: "100%",
+      position:'relative',
       padding: 20,
       paddingTop: 50,
       display: "flex",
       flexDirection: "row",
       alignItems: "center",
-      justifyContent: "center",
+      justifyContent: "flex-start",
       backdropFilter: "blur(27.18px)",
       background: "white",
       boxShadow: "0px 0.5px 0px rgba(0, 0, 0, 0.30)",
@@ -85,6 +87,7 @@ export default function PostsScreen() {
     mainText: {
       fontSize: 17,
       color: "#212121",
+      paddingLeft:100
     },
     crossInButton: {
       color: "#ffffff",
@@ -111,12 +114,18 @@ export default function PostsScreen() {
       flexWrap: "wrap",
     },
   });
+  const navigation = useNavigation()
   const imgContacts = require('../images/user.png')
   const imgKvadrat = require('../images/grid.png')
+  const imgLogOut = require('../images/log-out.png')
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.header}>
+          <TouchableOpacity onPress={()=> {
+            navigation.navigate('Registration')
+          }}><Image source={imgLogOut} style={{width:24,height:24}}></Image></TouchableOpacity>
+          
           <Text style={styles.mainText}>Публікації</Text>
         </View>
         <View style={styles.main}>
@@ -137,7 +146,7 @@ export default function PostsScreen() {
           <TouchableOpacity style={styles.mainKvadrat}>
           <Image style={{ width: 24, height: 24 }} source={imgKvadrat}></Image>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.mainButton}>
+          <TouchableOpacity style={styles.mainButton} onPress={()=> {navigation.navigate('CreatePost')}}>
             <Text style={styles.crossInButton}>+</Text>
           </TouchableOpacity>
           <TouchableOpacity>

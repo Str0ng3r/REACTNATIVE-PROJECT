@@ -22,6 +22,9 @@ export default function LoginScreen() {
   const linkFunc = () => {
     navigatation.navigate('Registration')
   };
+  const linkLogin = () => [
+    navigatation.navigate('Posts')
+  ]
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -158,7 +161,7 @@ export default function LoginScreen() {
           </View>
 
 
-          <TouchableOpacity style={styles.buttonRegistr} onPress={console.log(`${email},${passwordVal}`)}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={linkLogin}>
             <Text style={styles.whiteColor}>Увійти</Text>
           </TouchableOpacity>
 
