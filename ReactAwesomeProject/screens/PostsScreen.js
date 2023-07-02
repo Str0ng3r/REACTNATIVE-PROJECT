@@ -129,7 +129,7 @@ export default function PostsScreen() {
           <Text style={styles.mainText}>Публікації</Text>
         </View>
         <View style={styles.main}>
-          <View style={styles.boxForImg}>
+          <View style={styles.boxForImg} >
             <Image
               source={{
                 uri: "https://www.studiorent.ru/upload_data/9964/upldQ74OZi.jpg",
@@ -143,7 +143,7 @@ export default function PostsScreen() {
           </View>
         </View>
         <View style={styles.sideBar}>
-          <TouchableOpacity style={styles.mainKvadrat}>
+          <TouchableOpacity style={styles.mainKvadrat} onPress={()=> {navigation.navigate('Comments')}}>
           <Image style={{ width: 24, height: 24 }} source={imgKvadrat}></Image>
           </TouchableOpacity>
           <TouchableOpacity style={styles.mainButton} onPress={()=> {navigation.navigate('CreatePost')}}>
