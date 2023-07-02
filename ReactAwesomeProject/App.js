@@ -21,7 +21,11 @@ export default function App() {
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
         <MainStack.Screen name='Posts' component={PostsScreen}/>
+        {/* <MainStack.Screen name='CreatePost' component={CreatePostScreen}/> */}
       </MainStack.Navigator>
+      <Tab.Navigator>
+        <Tab.Screen name="CreatePost" component={CreatePostScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }
