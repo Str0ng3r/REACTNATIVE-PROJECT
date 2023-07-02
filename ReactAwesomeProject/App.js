@@ -9,23 +9,24 @@ import LoginScreen from './screens/LoginScreen';
 import PostsScreen from './screens/PostsScreen';
 import CreatePostScreen from './screens/CreatePostScreen';
 import CommentsScreen from './screens/CommentsScreen';
-
+import ProfileScreen from './screens/ProfileScreen';
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
     <NavigationContainer> 
-      <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+          <ProfileScreen></ProfileScreen>
+      {/* <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
         <MainStack.Screen name='Posts' component={PostsScreen}/>
-        {/* <MainStack.Screen name='CreatePost' component={CreatePostScreen}/> */}
-      </MainStack.Navigator>
-      <Tab.Navigator>
+        <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
+      </MainStack.Navigator> */}
+      {/* <Tab.Navigator>
         <Tab.Screen name="CreatePost" component={CreatePostScreen} />
-      </Tab.Navigator>
+      </Tab.Navigator> */}
     </NavigationContainer>
   );
 }
