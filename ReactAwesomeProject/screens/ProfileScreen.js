@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/native";
 import {
   View,
   StyleSheet,
@@ -33,12 +34,14 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 25,
     marginTop: 147,
+    paddingTop:60
   },
   imgAvatar: {
     width: 120,
     height: 120,
     borderRadius: 16,
-    marginBottom: 32,
+position:'absolute',
+top:-60
   },
   mainName: {
     color: "#212121",
@@ -106,14 +109,25 @@ fontSize: 16,
 fontFamily: 'Roboto',
 fontWeight: '400',
 wordWrap: 'break-word'
+  },
+  buttonLogOut:{
+    position:'absolute',
+    right:16,
+    top:22
   }
 });
 
 const comm = require('../images/COMM.png')
 const location = require('../images/LOCATION.png')
 const like = require('../images/LIKE.png')
+const logOut = require('../images/log-out.png')
+
 
 export default function ProfileScreen() {
+  const navigation = useNavigation()
+  const swipeBack = () => {
+    navigation.navigate("Posts");
+  };
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -130,7 +144,7 @@ export default function ProfileScreen() {
             style={styles.imgAvatar}
           ></Image>
           <Text style={styles.mainName}>Natali Romanova</Text>
-          <TouchableOpacity></TouchableOpacity>
+          <TouchableOpacity style={styles.buttonLogOut} onPress={swipeBack}><Image source={logOut}></Image></TouchableOpacity>
           <ScrollView style={styles.viewScrollContainer}>
           <View style={styles.contForPublication}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle23.png')}></Image>

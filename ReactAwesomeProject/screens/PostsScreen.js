@@ -142,17 +142,6 @@ export default function PostsScreen() {
             </View>
           </View>
         </View>
-        <View style={styles.sideBar}>
-          <TouchableOpacity style={styles.mainKvadrat} onPress={()=> {navigation.navigate('Comments')}}>
-          <Image style={{ width: 24, height: 24 }} source={imgKvadrat}></Image>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.mainButton} onPress={()=> {navigation.navigate('CreatePost')}}>
-            <Text style={styles.crossInButton}>+</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={()=> {navigation.navigate('Profile')}}>
-            <Image style={{ width: 24, height: 24 }} source={imgContacts}></Image>
-          </TouchableOpacity>
-        </View>
       </View>
     </TouchableWithoutFeedback>
   );
