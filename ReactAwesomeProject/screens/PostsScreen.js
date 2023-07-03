@@ -149,7 +149,7 @@ export default function PostsScreen() {
           <TouchableOpacity style={styles.mainButton} onPress={()=> {navigation.navigate('CreatePost')}}>
             <Text style={styles.crossInButton}>+</Text>
           </TouchableOpacity>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={()=> {navigation.navigate('Profile')}}>
             <Image style={{ width: 24, height: 24 }} source={imgContacts}></Image>
           </TouchableOpacity>
         </View>

@@ -16,14 +16,15 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer> 
-          <ProfileScreen></ProfileScreen>
-      {/* <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+          
+      <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
         <MainStack.Screen name='Posts' component={PostsScreen}/>
         <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
-      </MainStack.Navigator> */}
+        <MainStack.Screen name='Profile' component={ProfileScreen}/>
+      </MainStack.Navigator>
       {/* <Tab.Navigator>
         <Tab.Screen name="CreatePost" component={CreatePostScreen} />
       </Tab.Navigator> */}
