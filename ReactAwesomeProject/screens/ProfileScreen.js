@@ -49,19 +49,69 @@ const styles = StyleSheet.create({
   },
   viewScrollContainer: {
 width:'100%',
-paddingVertical: 16,
+
   },
   contForPublication: {
      width: "100%",
       padding: 16,
-       marginBottom: 32 
+       marginBottom: 40
   },
+   contForPublicationIndividual: {
+    width: "100%",
+     padding: 16,
+      marginBottom: 200
+ },
   imgPublic:{
     width:'100%',
     height:240,
     borderRadius: 8
+  },
+  textUnderImg:{
+    color: '#212121',
+fontSize: 16,
+fontFamily: 'Roboto',
+fontWeight: '500',
+wordWrap: 'break-word',
+marginTop:8
+  },
+  boxComments:{
+    marginTop:8,
+    display:'flex',
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'flex-start'
+  },
+  iconComm:{
+   marginRight:6
+  },
+  iconLike:{
+    marginLeft:24
+  }, 
+   iconLocation:{
+    marginLeft:120,
+    marginRight:4
+  },
+  nameLocation:{
+    // Ukraine
+color: '#212121',
+fontSize: 16,
+fontFamily: 'Roboto',
+fontWeight: '400',
+textDecoration: 'underline',
+wordWrap: 'break-word',
+  },
+  cyfry:{
+    color: '#212121',
+fontSize: 16,
+fontFamily: 'Roboto',
+fontWeight: '400',
+wordWrap: 'break-word'
   }
 });
+
+const comm = require('../images/COMM.png')
+const location = require('../images/LOCATION.png')
+const like = require('../images/LIKE.png')
 
 export default function ProfileScreen() {
   return (
@@ -84,15 +134,18 @@ export default function ProfileScreen() {
           <ScrollView style={styles.viewScrollContainer}>
           <View style={styles.contForPublication}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle23.png')}></Image>
-              <View></View>
+              <Text style={styles.textUnderImg}>Захід на чорному морі</Text>
+              <View style={styles.boxComments}><Image source={comm} style={styles.iconComm}></Image><Text style={styles.cyfry}>8</Text><Image source={like} style={styles.iconLike}></Image><Text style={styles.cyfry}>153</Text><Image source={location} style={styles.iconLocation}></Image><Text style={styles.nameLocation}>Ukraine</Text></View>
             </View>
             <View style={styles.contForPublication}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle2.png')}></Image>
-              <View></View>
+              <Text style={styles.textUnderImg}>Старий будиночок у Венеції</Text>
+              <View style={styles.boxComments}><Image source={comm} style={styles.iconComm}></Image><Text style={styles.cyfry}>3</Text><Image source={like} style={styles.iconLike}></Image><Text style={styles.cyfry}>200</Text><Image source={location} style={styles.iconLocation}></Image><Text style={styles.nameLocation}>Italy</Text></View>
             </View>
-            <View style={styles.contForPublication}>
+            <View style={styles.contForPublicationIndividual}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle4.png')}></Image>
-              <View></View>
+              <Text style={styles.textUnderImg}>Ліс</Text>
+              <View style={styles.boxComments}><Image source={comm} style={styles.iconComm}></Image><Text style={styles.cyfry}>50</Text><Image source={like} style={styles.iconLike}></Image><Text style={styles.cyfry}>200</Text><Image source={location} style={styles.iconLocation}></Image><Text style={styles.nameLocation}>Ukraine</Text></View>
             </View>
           </ScrollView>
         </View>
