@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View,Image } from 'react-native';
 import { Ionicons } from "@expo/vector-icons";
 import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
@@ -17,8 +17,35 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer> 
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="Posts">
+       <Tab.Navigator
+        screenOptions={({ route }) => ({
+          tabBarIcon: ({ focused, color, size }) => {
+            let iconSource;
+            if (route.name === "Posts") {
+              iconSource = focused
+                ? require('./images/grid.png')
+                : require('./images/grid.png');
+            } else if (route.name === "CreatePost") {
+              iconSource = focused
+                ? require('./images/new.png')
+                : require('./images/new.png');
+            } else if (route.name === "Profile") {
+              iconSource = focused
+                ? require('./images/user.png')
+                : require('./images/user.png');
+            }
+
+            return <Image source={iconSource} style={{ width: size, height: size }} />;
+          },
+          
+        })}
+        tabBarOptions={{
+          activeTintColor: "tomato",
+          inactiveTintColor: "gray",
+          showLabel: false
+        }}
+      >
+        <Tab.Screen name="Posts" options={{ headerShown: false }}>
           {() => (
             <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
@@ -29,9 +56,9 @@ export default function App() {
         <MainStack.Screen name='Profile' component={ProfileScreen}/>
       </MainStack.Navigator>
           )}
-        </Tab.Screen>
-        <Tab.Screen name="CreatePost" component={CreatePostScreen} />
-        <Tab.Screen name="Profile" component={ProfileScreen} />
+        </Tab.Screen >
+        <Tab.Screen name="CreatePost" component={CreatePostScreen}  options={{ headerShown: false }}/>
+        <Tab.Screen name="Profile" component={ProfileScreen}  options={{ headerShown: false }}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
