@@ -117,6 +117,7 @@ export default function PostsScreen() {
   const navigation = useNavigation()
   const imgContacts = require('../images/user.png')
   const imgKvadrat = require('../images/grid.png')
+  const newButton = require('../images/new.png')
   const imgLogOut = require('../images/log-out.png')
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
@@ -141,6 +142,12 @@ export default function PostsScreen() {
               <Text style={styles.emailText}>email@example.com</Text>
             </View>
           </View>
+        </View>
+        <View style={styles.sideBar}>
+
+          <TouchableOpacity style={{width:24,height:24}} onPress={()=> {navigation.navigate('Posts')}}><Image source={imgKvadrat}></Image></TouchableOpacity>
+          <TouchableOpacity style={{width:70,height:40}} onPress={()=> {navigation.navigate('CreatePost')}}><Image source={newButton}></Image></TouchableOpacity>
+          <TouchableOpacity style={{width:24,height:24}} onPress={()=> {navigation.navigate('Profile')}}><Image source={imgContacts}></Image></TouchableOpacity>
         </View>
       </View>
     </TouchableWithoutFeedback>

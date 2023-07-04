@@ -1,5 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
+import { Ionicons } from "@expo/vector-icons";
 import 'react-native-gesture-handler';
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
@@ -16,8 +17,10 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   return (
     <NavigationContainer> 
-          
-      <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+      <Tab.Navigator screenOptions={{ headerShown: false }}>
+        <Tab.Screen name="Posts">
+          {() => (
+            <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
@@ -25,9 +28,11 @@ export default function App() {
         <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
         <MainStack.Screen name='Profile' component={ProfileScreen}/>
       </MainStack.Navigator>
-      {/* <Tab.Navigator>
+          )}
+        </Tab.Screen>
         <Tab.Screen name="CreatePost" component={CreatePostScreen} />
-      </Tab.Navigator> */}
+        <Tab.Screen name="Profile" component={ProfileScreen} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 }

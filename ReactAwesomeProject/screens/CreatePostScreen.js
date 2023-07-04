@@ -9,9 +9,18 @@ import {
   TouchableOpacity,
   Image,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
+import * as Location from "expo-location";
+import MapView, { Marker } from "react-native-maps";
+import { Camera } from "expo-camera";
+import * as MediaLibrary from "expo-media-library";
 export default function CreatePostScreen() {
+  const [locationCoor, setLocationCoor] = useState(null);
+  const [hasPermission, setHasPermission] = useState(null);
+  const cameraRef = useRef(null);
+  const [type, setType] = useState(Camera.Constants.Type.back);
+
   const styles = StyleSheet.create({
     container: {
       width: "100%",
@@ -59,15 +68,51 @@ export default function CreatePostScreen() {
       paddingBottom: 15,
       marginBottom: 16,
     },
+    mapStyle: {
+      width: "90%",
+      height: 100,
+    },
   });
+
+
+
+
+
+
+
   const imgStrelka = require("../images/arrow-left.png");
   const imgCamera = require("../images/camera.png");
   const imgNavigate = require("../images/map-pin.png");
-  const imgDelete = require('../images/trash.png')
+  const imgDelete = require("../images/trash.png");
   const navigation = useNavigation();
   const swipeBack = () => {
     navigation.navigate("Posts");
   };
+
+
+
+
+
+
+
+
+
+
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    console.log("click!");
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
+    }
+    let location = await Location.getCurrentPositionAsync();
+    const coords = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    };
+    await setLocationCoor(coords);
+    await console.log(locationCoor);
+  };
+
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
@@ -82,7 +127,7 @@ export default function CreatePostScreen() {
         </View>
         <View style={styles.form}>
           <View style={styles.photoTeren}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={getLocation}>
               <Image
                 style={{ width: 24, height: 24 }}
                 source={imgCamera}
@@ -100,7 +145,7 @@ export default function CreatePostScreen() {
           <View
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
               alignItems: "center",
               justifyContent: "flex-start",
               width: "90%",
@@ -113,7 +158,24 @@ export default function CreatePostScreen() {
               style={{ width: 20, height: 20 }}
               source={imgNavigate}
             ></Image>
-            <TextInput placeholder="Місцевість"></TextInput>
+            {/* <TextInput placeholder="Місцевість"></TextInput> */}
+            {locationCoor && (
+              <MapView
+                style={styles.mapStyle}
+                region={{
+                  ...locationCoor,
+                }}
+                showsUserLocation={true}
+              >
+                {locationCoor && (
+                  <Marker
+                    title="I am here"
+                    coordinate={{...locationCoor}}
+                    description="Hello"
+                  />
+                )}
+              </MapView>
+            )}
           </View>
           <TouchableOpacity
             style={{
@@ -131,8 +193,8 @@ export default function CreatePostScreen() {
         <View
           style={{
             position: "absolute",
-            bottom:0,
-            left:0,
+            bottom: 0,
+            left: 0,
             display: "flex",
             width: "100%",
             height: 70,
@@ -140,7 +202,9 @@ export default function CreatePostScreen() {
             justifyContent: "center",
           }}
         >
-          <TouchableOpacity><Image source={imgDelete} style={{width:28,height:28}}></Image></TouchableOpacity>
+          <TouchableOpacity>
+            <Image source={imgDelete} style={{ width: 28, height: 28 }}></Image>
+          </TouchableOpacity>
         </View>
       </View>
     </TouchableWithoutFeedback>
