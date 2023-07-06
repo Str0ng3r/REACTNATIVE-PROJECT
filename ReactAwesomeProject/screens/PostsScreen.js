@@ -160,13 +160,13 @@ useEffect(()=> {
             </View>
           </View>
           <ScrollView style={{width:'90%',height:400}}>
-            {imagesData.map(el => {
+            {/* {imagesData.map(el => {
               
               <View key={el.name} style={styles.postCont}>
 <Image source={{uri:el.uriName}} style={{width:'100%',height:240,borderRadius: 8}}></Image>
                 </View>
 })}
-            
+             */} с этим кодом выдаёт ошибку
       </ScrollView>
         </View>
       </View>
