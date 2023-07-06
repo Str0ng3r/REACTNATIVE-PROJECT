@@ -11,11 +11,16 @@ import PostsScreen from './screens/PostsScreen';
 import CreatePostScreen from './screens/CreatePostScreen';
 import CommentsScreen from './screens/CommentsScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import store, { persistor } from './Redux/store';
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 export default function App() {
   return (
+    <Provider  store={store}>
+    <PersistGate loading={null} persistor={persistor}>
     <NavigationContainer> 
        <Tab.Navigator
         screenOptions={({ route }) => ({
@@ -47,11 +52,13 @@ export default function App() {
       >
         <Tab.Screen name="Posts" options={{ headerShown: false }}>
           {() => (
+            
             <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+              <MainStack.Screen name='Posts' component={PostsScreen}/>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
-        <MainStack.Screen name='Posts' component={PostsScreen}/>
+        
         <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
         <MainStack.Screen name='Profile' component={ProfileScreen}/>
       </MainStack.Navigator>
@@ -61,6 +68,8 @@ export default function App() {
         <Tab.Screen name="Profile" component={ProfileScreen}  options={{ headerShown: false }}/>
       </Tab.Navigator>
     </NavigationContainer>
+    </PersistGate>
+    </Provider>
   );
 }
 

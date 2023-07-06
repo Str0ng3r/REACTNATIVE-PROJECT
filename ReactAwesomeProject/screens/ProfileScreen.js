@@ -74,7 +74,6 @@ width:'100%',
 fontSize: 16,
 fontFamily: 'Roboto',
 fontWeight: '500',
-wordWrap: 'break-word',
 marginTop:8
   },
   boxComments:{
@@ -100,15 +99,12 @@ color: '#212121',
 fontSize: 16,
 fontFamily: 'Roboto',
 fontWeight: '400',
-textDecoration: 'underline',
-wordWrap: 'break-word',
   },
   cyfry:{
     color: '#212121',
 fontSize: 16,
 fontFamily: 'Roboto',
 fontWeight: '400',
-wordWrap: 'break-word'
   },
   buttonLogOut:{
     position:'absolute',

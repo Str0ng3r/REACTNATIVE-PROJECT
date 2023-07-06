@@ -8,12 +8,22 @@ import {
   Keyboard,
   TouchableOpacity,
   Image,
+  ScrollView
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Svg, Circle, Rect, Line } from "react-native-svg";
+import { useDispatch, useSelector, } from "react-redux";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
+import { useEffect } from "react";
 export default function PostsScreen() {
+
+  const imagesData = useSelector((state) => state.images);
+
+useEffect(()=> {
+  console.log(imagesData)
+
+},[imagesData])
   const styles = StyleSheet.create({
     container: {
       width: "100%",
@@ -113,6 +123,13 @@ export default function PostsScreen() {
       flexDirection: "row",
       flexWrap: "wrap",
     },
+    postCont:{
+      width:'90%',
+      height:300,
+      display:'flex',
+      flexDirection:'row',
+
+    }
   });
   const navigation = useNavigation()
   const imgContacts = require('../images/user.png')
@@ -142,6 +159,15 @@ export default function PostsScreen() {
               <Text style={styles.emailText}>email@example.com</Text>
             </View>
           </View>
+          <ScrollView style={{width:'90%',height:400}}>
+            {imagesData.map(el => {
+              
+              <View key={el.name} style={styles.postCont}>
+<Image source={{uri:el.uriName}} style={{width:'100%',height:240,borderRadius: 8}}></Image>
+                </View>
+})}
+            
+      </ScrollView>
         </View>
       </View>
     </TouchableWithoutFeedback>
