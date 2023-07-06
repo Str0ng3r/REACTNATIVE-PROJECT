@@ -132,9 +132,6 @@ useEffect(()=> {
     }
   });
   const navigation = useNavigation()
-  const imgContacts = require('../images/user.png')
-  const imgKvadrat = require('../images/grid.png')
-  const newButton = require('../images/new.png')
   const imgLogOut = require('../images/log-out.png')
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
