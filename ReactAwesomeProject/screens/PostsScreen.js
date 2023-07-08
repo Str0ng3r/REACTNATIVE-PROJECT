@@ -8,7 +8,8 @@ import {
   Keyboard,
   TouchableOpacity,
   Image,
-  ScrollView
+  ScrollView,
+  FlatList
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Svg, Circle, Rect, Line } from "react-native-svg";
@@ -156,15 +157,18 @@ useEffect(()=> {
               <Text style={styles.emailText}>email@example.com</Text>
             </View>
           </View>
-          <ScrollView style={{width:'90%',height:400}}>
-            {/* {imagesData.map(el => {
-              
-              <View key={el.name} style={styles.postCont}>
-<Image source={{uri:el.uriName}} style={{width:'100%',height:240,borderRadius: 8}}></Image>
-                </View>
-})}
-             */} с этим кодом выдаёт ошибку
-      </ScrollView>
+          <FlatList style={{width:'100%',height:400}}
+  data={imagesData}
+  keyExtractor={(item) => item.name}
+  renderItem={({ item }) => (
+    <View style={styles.postCont}>
+      <Image
+        source={{ uri: item.uriName }}
+        style={{ width: '100%', height: 240, borderRadius: 8 }}
+      />
+    </View>
+  )}
+/>
         </View>
       </View>
     </TouchableWithoutFeedback>
