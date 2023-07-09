@@ -17,12 +17,10 @@ import { PersistGate } from 'redux-persist/integration/react';
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
-export default function App() {
+
+function Home() {
   return (
-    <Provider  store={store}>
-    <PersistGate loading={null} persistor={persistor}>
-    <NavigationContainer> 
-       <Tab.Navigator
+<Tab.Navigator
         screenOptions={({ route }) => ({
           tabBarIcon: ({ focused, color, size }) => {
             let iconSource;
@@ -50,23 +48,29 @@ export default function App() {
           showLabel: false
         }}
       >
-        <Tab.Screen name="Posts" options={{ headerShown: false }}>
-          {() => (
-            
-            <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
-              <MainStack.Screen name='Posts' component={PostsScreen}/>
+<Tab.Screen name="Posts" component={PostsScreen} options={{ headerShown: false }}></Tab.Screen>
+<Tab.Screen name="CreatePost" component={CreatePostScreen}  options={{ headerShown: false }}/>
+        <Tab.Screen name="Profile" component={ProfileScreen}  options={{ headerShown: false }}/>
+
+      </Tab.Navigator>
+  )
+}
+
+
+export default function App() {
+  return (
+    <Provider  store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+    <NavigationContainer> 
+        <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
+          <MainStack.Screen name='Home' component={Home}></MainStack.Screen>
+        <MainStack.Screen name='Posts' component={PostsScreen}/>
         <MainStack.Screen name='Comments' component={CommentsScreen}/>
         <MainStack.Screen name="Registration" component={RegistrationScreen} />
         <MainStack.Screen name="Login" component={LoginScreen} />
-        
         <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
         <MainStack.Screen name='Profile' component={ProfileScreen}/>
       </MainStack.Navigator>
-          )}
-        </Tab.Screen >
-        <Tab.Screen name="CreatePost" component={CreatePostScreen}  options={{ headerShown: false }}/>
-        <Tab.Screen name="Profile" component={ProfileScreen}  options={{ headerShown: false }}/>
-      </Tab.Navigator>
     </NavigationContainer>
     </PersistGate>
     </Provider>
