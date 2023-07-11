@@ -16,8 +16,12 @@ import store, { persistor } from "./Redux/store";
 import { useSelector } from "react-redux";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
+
 const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
+
+
+
 
 const useRoute = (isAuth) => {
 
@@ -54,45 +58,6 @@ const useRoute = (isAuth) => {
   }
 };
 
-// function Home() {
-//   return (
-// {/* <Tab.Navigator
-//         screenOptions={({ route }) => ({
-//           tabBarIcon: ({ focused, color, size }) => {
-//             let iconSource;
-//             if (route.name === "Posts") {
-//               iconSource = focused
-//                 ? require('./images/grid.png')
-//                 : require('./images/grid.png');
-//             } else if (route.name === "CreatePost") {
-//               iconSource = focused
-//                 ? require('./images/new.png')
-//                 : require('./images/new.png');
-//             } else if (route.name === "Profile") {
-//               iconSource = focused
-//                 ? require('./images/user.png')
-//                 : require('./images/user.png');
-//             }
-
-//             return <Image source={iconSource} style={{ width: size, height: size }} />;
-//           },
-
-//         })}
-//         tabBarOptions={{
-//           activeTintColor: "tomato",
-//           inactiveTintColor: "gray",
-//           showLabel: false
-//         }}
-//       >
-// <Tab.Screen name="Posts" component={PostsScreen} options={{ headerShown: false }}></Tab.Screen>
-// <Tab.Screen name="CreatePost" component={CreatePostScreen}  options={{ headerShown: false }}/>
-//         <Tab.Screen name="Profile" component={ProfileScreen}  options={{ headerShown: false }}/>
-
-//       </Tab.Navigator> */}
-//   )
-// }
-
-
 function AppContent() {
   const dataAuth = useSelector((state) => state.auth);
   const acceptAuth = useRoute(dataAuth);
@@ -103,8 +68,6 @@ function AppContent() {
     </NavigationContainer>
   );
 }
-
-
 
 export default function App() {
   return (
@@ -125,66 +88,4 @@ const styles = StyleSheet.create({
   },
 });
 
-// <MainStack.Navigator initialRouteName="Registration" screenOptions={{ headerShown: false }}>
-// <MainStack.Screen name='Home' component={Home}></MainStack.Screen>
-// <MainStack.Screen name='Posts' component={PostsScreen}/>
-// <MainStack.Screen name='Comments' component={CommentsScreen}/>
-// <MainStack.Screen name="Registration" component={RegistrationScreen} />
-// <MainStack.Screen name="Login" component={LoginScreen} />
-// <MainStack.Screen name='CreatePost' component={CreatePostScreen}/>
-// <MainStack.Screen name='Profile' component={ProfileScreen}/>
-// </MainStack.Navigator>
 
-
-
-
-
-
-{/* <Tab.Navigator
-            screenOptions={({ route }) => ({
-              tabBarIcon: ({ focused, color, size }) => {
-                let iconSource;
-                if (route.name === "Posts") {
-                  iconSource = focused
-                    ? require("./images/grid.png")
-                    : require("./images/grid.png");
-                } else if (route.name === "CreatePost") {
-                  iconSource = focused
-                    ? require("./images/new.png")
-                    : require("./images/new.png");
-                } else if (route.name === "Profile") {
-                  iconSource = focused
-                    ? require("./images/user.png")
-                    : require("./images/user.png");
-                }
-
-                return (
-                  <Image
-                    source={iconSource}
-                    style={{ width: size, height: size }}
-                  />
-                );
-              },
-            })}
-            tabBarOptions={{
-              activeTintColor: "tomato",
-              inactiveTintColor: "gray",
-              showLabel: false,
-            }}
-          >
-            <Tab.Screen
-              name="Posts"
-              component={PostsScreen}
-              options={{ headerShown: false }}
-            ></Tab.Screen>
-            <Tab.Screen
-              name="CreatePost"
-              component={CreatePostScreen}
-              options={{ headerShown: false }}
-            />
-            <Tab.Screen
-              name="Profile"
-              component={ProfileScreen}
-              options={{ headerShown: false }}
-            />
-          </Tab.Navigator> */}
