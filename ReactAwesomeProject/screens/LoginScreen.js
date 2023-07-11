@@ -10,21 +10,26 @@ import {
 } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { setIsAuth } from '../Redux/slice';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigatation = useNavigation()
   const [passwordVal, setPasswordVal] = useState('');
   const [email,setEmail] = useState('')
+  const dispatch = useDispatch()
+  const authData = useSelector(state => state.auth)
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
   const linkFunc = () => {
     navigatation.navigate('Registration')
   };
-  const linkLogin = () => [
-    navigatation.navigate('Posts')
-  ]
+  const linkLogin = () => {
+    dispatch(setIsAuth(true))
+    console.log(authData)
+  }
   const styles = StyleSheet.create({
     container: {
       width: '100%',

@@ -17,9 +17,17 @@ import { useDispatch, useSelector, } from "react-redux";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
+import { setIsAuth } from "../Redux/slice";
 export default function PostsScreen() {
-
+const dispatch = useDispatch()
+const dataAuth = useSelector((state) => state.auth);
   const imagesData = useSelector((state) => state.images);
+
+  const linkUnLogin = () => {
+    dispatch(setIsAuth(false))
+    console.log(dataAuth)
+  }
+
 
 useEffect(()=> {
   console.log(imagesData)
@@ -138,9 +146,7 @@ useEffect(()=> {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={()=> {
-            navigation.navigate('Registration')
-          }}><Image source={imgLogOut} style={{width:24,height:24}}></Image></TouchableOpacity>
+          <TouchableOpacity onPress={linkUnLogin}><Image source={imgLogOut} style={{width:24,height:24}}></Image></TouchableOpacity>
           
           <Text style={styles.mainText}>Публікації</Text>
         </View>
