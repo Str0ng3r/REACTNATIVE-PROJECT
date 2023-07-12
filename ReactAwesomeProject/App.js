@@ -37,7 +37,7 @@ const useRoute = (isAuth) => {
     );
   } else {
     return (
-      <Tab.Navigator tabBarOptions={{showLabel:false}}>
+      <Tab.Navigator screenOptions={{showLabel:false}}>
         <Tab.Screen
           name="Posts"
           component={PostsScreen}

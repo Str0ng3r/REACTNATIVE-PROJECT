@@ -28,7 +28,6 @@ export default function CreatePostScreen() {
 
   const dispatch = useDispatch();
   const imagesData = useSelector((state) => state.images);
-
   const styles = StyleSheet.create({
     container: {
       width: "100%",
@@ -205,10 +204,10 @@ export default function CreatePostScreen() {
               ></Image>
               <TextInput
                 placeholder="Місцевість"
-                onChangeText={(text) =>{ setLocationName(text)
-                console.log(locationName)
-                }
-                }
+                onChangeText={(text) => {
+                  setLocationName(text);
+                  console.log(locationName);
+                }}
               ></TextInput>
               {locationCoor && (
                 <MapView
@@ -236,16 +235,18 @@ export default function CreatePostScreen() {
                 justifyContent: "center",
               }}
               onPress={() => {
+                // imagesData.push({
+                //   uriName: capturedPhoto.uri,
+                //   name: nameImg,
+                //   location: locationName,
+                // });
 
-
-                dispatch(
-                  setImages({
-                    uriName: capturedPhoto.uri,
-                    name: nameImg,
-                    location: locationName, 
-                  })
-                );
-                console.log(imagesData)
+                dispatch(setImages([{
+                  uriName: capturedPhoto.uri,
+                  name: nameImg,
+                  location: locationName,
+                }]));
+                console.log(imagesData);
                 navigation.navigate("Posts");
                 setCapturedPhoto(null);
                 setNameImg(null);
@@ -255,7 +256,7 @@ export default function CreatePostScreen() {
               <Text
                 style={{ color: "#BDBDBD", fontSize: 16, fontWeight: "400" }}
               >
-                Опубліковати
+                Опублікувати
               </Text>
             </TouchableOpacity>
           </View>

@@ -21,7 +21,7 @@ import { setIsAuth } from "../Redux/slice";
 export default function PostsScreen() {
 const dispatch = useDispatch()
 const dataAuth = useSelector((state) => state.auth);
-  const imagesData = useSelector((state) => state.images);
+const imagesData = useSelector((state) => state.images);
 
   const linkUnLogin = () => {
     dispatch(setIsAuth(false))
@@ -30,7 +30,6 @@ const dataAuth = useSelector((state) => state.auth);
 
 
 useEffect(()=> {
-  console.log(imagesData)
 
 },[imagesData])
   const styles = StyleSheet.create({
@@ -133,12 +132,15 @@ useEffect(()=> {
       flexWrap: "wrap",
     },
     postCont:{
-      width:'90%',
+      width:'100%',
       height:300,
       display:'flex',
-      flexDirection:'row',
-
-    }
+      flexDirection:'column',
+      marginTop:20,
+      padding:5,
+      alignItems:'center',
+      justifyContent:'center'
+    },
   });
   const navigation = useNavigation()
   const imgLogOut = require('../images/log-out.png')
@@ -168,10 +170,12 @@ useEffect(()=> {
   keyExtractor={(item) => item.name}
   renderItem={({ item }) => (
     <View style={styles.postCont}>
+{item.location !== null && <Text>Location {item.location}</Text>}
       <Image
         source={{ uri: item.uriName }}
         style={{ width: '100%', height: 240, borderRadius: 8 }}
       />
+      <Text>{item.name}</Text>
     </View>
   )}
 />
