@@ -241,11 +241,11 @@ export default function CreatePostScreen() {
                 //   location: locationName,
                 // });
 
-                dispatch(setImages([{
+                dispatch(setImages({
                   uriName: capturedPhoto.uri,
                   name: nameImg,
                   location: locationName,
-                }]));
+                }));
                 console.log(imagesData);
                 navigation.navigate("Posts");
                 setCapturedPhoto(null);

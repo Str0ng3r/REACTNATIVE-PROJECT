@@ -7,7 +7,7 @@ initialState:{
 },
 reducers:{
     setImages:(state,action)=>{
-        state.images =  action.payload
+        state.images =  [...state.images,action.payload]
     },
     setIsAuth:(state,action)=>{
         state.auth = action.payload

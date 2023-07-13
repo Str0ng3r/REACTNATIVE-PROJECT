@@ -9,29 +9,26 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  FlatList
+  FlatList,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Svg, Circle, Rect, Line } from "react-native-svg";
-import { useDispatch, useSelector, } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { setIsAuth } from "../Redux/slice";
 export default function PostsScreen() {
-const dispatch = useDispatch()
-const dataAuth = useSelector((state) => state.auth);
-const imagesData = useSelector((state) => state.images);
+  const dispatch = useDispatch();
+  const dataAuth = useSelector((state) => state.auth);
+  const imagesData = useSelector((state) => state.images);
 
   const linkUnLogin = () => {
-    dispatch(setIsAuth(false))
-    console.log(dataAuth)
-  }
+    dispatch(setIsAuth(false));
+    console.log(dataAuth);
+  };
 
-
-useEffect(()=> {
-
-},[imagesData])
+  useEffect(() => {}, [imagesData]);
   const styles = StyleSheet.create({
     container: {
       width: "100%",
@@ -42,7 +39,7 @@ useEffect(()=> {
     },
     header: {
       width: "100%",
-      position:'relative',
+      position: "relative",
       padding: 20,
       paddingTop: 50,
       display: "flex",
@@ -105,7 +102,7 @@ useEffect(()=> {
     mainText: {
       fontSize: 17,
       color: "#212121",
-      paddingLeft:100
+      paddingLeft: 100,
     },
     crossInButton: {
       color: "#ffffff",
@@ -131,29 +128,41 @@ useEffect(()=> {
       flexDirection: "row",
       flexWrap: "wrap",
     },
-    postCont:{
-      width:'100%',
-      height:300,
-      display:'flex',
-      flexDirection:'column',
-      marginTop:20,
-      padding:5,
-      alignItems:'center',
-      justifyContent:'center'
+    postCont: {
+      width: "100%",
+      height: 300,
+      display: "flex",
+      flexDirection: "column",
+      marginTop: 20,
+      padding: 5,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+    wrapBottomTabImg: {
+      display: "flex",
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      width:'100%'
     },
   });
-  const navigation = useNavigation()
-  const imgLogOut = require('../images/log-out.png')
+  const comm = require("../images/COMM.png");
+  const location = require("../images/LOCATION.png");
+  const like = require("../images/LIKE.png");
+  const navigation = useNavigation();
+  const imgLogOut = require("../images/log-out.png");
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={linkUnLogin}><Image source={imgLogOut} style={{width:24,height:24}}></Image></TouchableOpacity>
-          
+          <TouchableOpacity onPress={linkUnLogin}>
+            <Image source={imgLogOut} style={{ width: 24, height: 24 }}></Image>
+          </TouchableOpacity>
+
           <Text style={styles.mainText}>Публікації</Text>
         </View>
         <View style={styles.main}>
-          <View style={styles.boxForImg} >
+          <View style={styles.boxForImg}>
             <Image
               source={{
                 uri: "https://www.studiorent.ru/upload_data/9964/upldQ74OZi.jpg",
@@ -165,20 +174,34 @@ useEffect(()=> {
               <Text style={styles.emailText}>email@example.com</Text>
             </View>
           </View>
-          <FlatList style={{width:'100%',height:400}}
-  data={imagesData}
-  keyExtractor={(item) => item.name}
-  renderItem={({ item }) => (
-    <View style={styles.postCont}>
-{item.location !== null && <Text>Location {item.location}</Text>}
-      <Image
-        source={{ uri: item.uriName }}
-        style={{ width: '100%', height: 240, borderRadius: 8 }}
-      />
-      <Text>{item.name}</Text>
-    </View>
-  )}
-/>
+          <FlatList
+            style={{
+              width: "100%",
+              height: "100%",
+              marginTop: 50,
+              marginBottom: 60,
+            }}
+            data={imagesData}
+            keyExtractor={(item) => item.name}
+            renderItem={({ item }) => (
+              <View style={styles.postCont}>
+                <Image
+                  source={{ uri: item.uriName }}
+                  style={{ width: "100%", height: 240, borderRadius: 8 }}
+                />
+                <View style={styles.wrapBottomTabImg}>
+                  {item.location !== null && (
+                    <Image
+                      source={location}
+                      style={{ width: 24, height: 24 }}
+                    ></Image>
+                  )}
+                  <Text style={{marginLeft:10}}>{item.name}</Text>
+                  <Image source={like} style={{width:24,height:24,marginLeft:20}}></Image>
+                </View>
+              </View>
+            )}
+          />
         </View>
       </View>
     </TouchableWithoutFeedback>
