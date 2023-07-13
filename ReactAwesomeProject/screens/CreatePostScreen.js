@@ -141,13 +141,13 @@ export default function CreatePostScreen() {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
     };
-return coords
+    return coords;
   };
 
   const handleCheckboxToggle = async () => {
     setIsChecked(!isChecked);
   };
-  
+
   useEffect(() => {
     (async () => {
       setCameraRef(null);
@@ -209,14 +209,14 @@ return coords
               ></Image>
               <Switch
                 value={isChecked}
-                onValueChange={()=>{
-                  handleCheckboxToggle()
-                  if(isChecked){
-                  const coor=getLocation()
-setLocationCoor(coor)     }else {
-  setLocationCoor(null)
-}           
-                
+                onValueChange={() => {
+                  handleCheckboxToggle();
+                  if (isChecked) {
+                    const coor = getLocation();
+                    setLocationCoor(coor);
+                  } else {
+                    setLocationCoor(null);
+                  }
                 }}
               ></Switch>
               {/* {locationCoor && (
@@ -245,12 +245,6 @@ setLocationCoor(coor)     }else {
                 justifyContent: "center",
               }}
               onPress={() => {
-                // imagesData.push({
-                //   uriName: capturedPhoto.uri,
-                //   name: nameImg,
-                //   location: locationName,
-                // });
-
                 dispatch(
                   setImages({
                     uriName: capturedPhoto.uri,
