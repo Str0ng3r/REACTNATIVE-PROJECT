@@ -9,6 +9,7 @@ import {
   Keyboard,
   TouchableOpacity,
   Image,
+  Switch,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Location from "expo-location";
@@ -124,25 +125,29 @@ export default function CreatePostScreen() {
   const imgNavigate = require("../images/map-pin.png");
   const imgDelete = require("../images/trash.png");
   const navigation = useNavigation();
+  const [isChecked, setIsChecked] = useState(false);
   const swipeBack = () => {
     navigation.navigate("Posts");
   };
 
-  // const getLocation = async () => {
-  //   let { status } = await Location.requestForegroundPermissionsAsync();
-  //   console.log("click!");
-  //   if (status !== "granted") {
-  //     console.log("Permission to access location was denied");
-  //   }
-  //   let location = await Location.getCurrentPositionAsync();
-  //   const coords = {
-  //     latitude: location.coords.latitude,
-  //     longitude: location.coords.longitude,
-  //   };
-  //   await setLocationCoor(coords);
-  //   await console.log(locationCoor);
-  // };
+  const getLocation = async () => {
+    let { status } = await Location.requestForegroundPermissionsAsync();
+    console.log("click!");
+    if (status !== "granted") {
+      console.log("Permission to access location was denied");
+    }
+    let location = await Location.getCurrentPositionAsync();
+    const coords = {
+      latitude: location.coords.latitude,
+      longitude: location.coords.longitude,
+    };
+return coords
+  };
 
+  const handleCheckboxToggle = async () => {
+    setIsChecked(!isChecked);
+  };
+  
   useEffect(() => {
     (async () => {
       setCameraRef(null);
@@ -202,14 +207,19 @@ export default function CreatePostScreen() {
                 style={{ width: 20, height: 20 }}
                 source={imgNavigate}
               ></Image>
-              <TextInput
-                placeholder="Місцевість"
-                onChangeText={(text) => {
-                  setLocationName(text);
-                  console.log(locationName);
+              <Switch
+                value={isChecked}
+                onValueChange={()=>{
+                  handleCheckboxToggle()
+                  if(isChecked){
+                  const coor=getLocation()
+setLocationCoor(coor)     }else {
+  setLocationCoor(null)
+}           
+                
                 }}
-              ></TextInput>
-              {locationCoor && (
+              ></Switch>
+              {/* {locationCoor && (
                 <MapView
                   style={styles.mapStyle}
                   region={{
@@ -225,7 +235,7 @@ export default function CreatePostScreen() {
                     />
                   )}
                 </MapView>
-              )}
+              )} */}
             </View>
             <TouchableOpacity
               style={{
@@ -241,11 +251,13 @@ export default function CreatePostScreen() {
                 //   location: locationName,
                 // });
 
-                dispatch(setImages({
-                  uriName: capturedPhoto.uri,
-                  name: nameImg,
-                  location: locationName,
-                }));
+                dispatch(
+                  setImages({
+                    uriName: capturedPhoto.uri,
+                    name: nameImg,
+                    location: locationName,
+                  })
+                );
                 console.log(imagesData);
                 navigation.navigate("Posts");
                 setCapturedPhoto(null);
