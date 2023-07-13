@@ -21,6 +21,25 @@ const MainStack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
 
+const PostsStack = createStackNavigator();
+
+const PostsStackScreen = () => (
+  <PostsStack.Navigator>
+    <PostsStack.Screen
+      name="Posts"
+      component={PostsScreen}
+      options={{ headerShown: false }}
+    />
+    <PostsStack.Screen
+      name="Comments"
+      component={CommentsScreen}
+      options={{ headerShown: false }}
+    />
+  </PostsStack.Navigator>
+);
+
+
+
 
 
 const useRoute = (isAuth) => {
@@ -40,14 +59,23 @@ const useRoute = (isAuth) => {
       <Tab.Navigator screenOptions={{showLabel:false}}>
         <Tab.Screen
           name="Posts"
-          component={PostsScreen}
-          options={{ headerShown: false ,tabBarIcon:({focused,size,color}) => (<MaterialCommunityIcons name="postage-stamp" size={24} color={color} />)}}
-        ></Tab.Screen>
+          component={PostsStackScreen} // Используем новый стек навигации для экрана PostsScreen
+          options={{headerShown: false ,
+            tabBarIcon: ({ focused, size, color }) => (
+              <MaterialCommunityIcons
+                name="postage-stamp"
+                size={24}
+                color={color}
+              />
+            ),
+          }}
+        />
         <Tab.Screen
           name="CreatePost"
           component={CreatePostScreen}
           options={{ headerShown: false , tabBarIcon:({focused,size,color}) => (<Ionicons name="md-create" size={24} color={color} />) }}
-        />
+        >
+        </Tab.Screen>
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}

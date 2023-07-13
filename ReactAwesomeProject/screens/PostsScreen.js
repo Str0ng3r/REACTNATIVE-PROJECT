@@ -198,6 +198,8 @@ export default function PostsScreen() {
                   )}
                   <Text style={{marginLeft:10}}>{item.name}</Text>
                   <Image source={like} style={{width:24,height:24,marginLeft:20}}></Image>
+                  <TouchableOpacity style={{width:24,height:24,marginLeft:20}} onPress={()=> {navigation.navigate('Comments')}}><Image source={comm} ></Image></TouchableOpacity>
+                  
                 </View>
               </View>
             )}

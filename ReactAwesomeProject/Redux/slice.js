@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const imagesSlice = createSlice({
 name:'images',
 initialState:{
-    images:[{location:'fghfghf',name:'hfghfg',uriName:'hfghfgh'}],
+    images:[],
     auth:false
 },
 reducers:{
