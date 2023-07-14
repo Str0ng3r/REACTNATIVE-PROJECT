@@ -182,7 +182,7 @@ export default function PostsScreen() {
               marginBottom: 60,
             }}
             data={imagesData}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item) => item.uriName}
             renderItem={({ item }) => (
               <View style={styles.postCont}>
                 <Image

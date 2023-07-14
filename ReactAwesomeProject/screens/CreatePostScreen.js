@@ -203,11 +203,11 @@ export default function CreatePostScreen() {
                 marginBottom: 32,
               }}
             >
-              <Image
+              {/* <Image
                 style={{ width: 20, height: 20 }}
                 source={imgNavigate}
-              ></Image>
-              <Switch
+              ></Image> */}
+              {/* <Switch
                 value={isChecked}
                 onValueChange={() => {
                   handleCheckboxToggle();
@@ -218,7 +218,7 @@ export default function CreatePostScreen() {
                     setLocationCoor(null);
                   }
                 }}
-              ></Switch>
+              ></Switch> */}
               {/* {locationCoor && (
                 <MapView
                   style={styles.mapStyle}
@@ -249,14 +249,14 @@ export default function CreatePostScreen() {
                   setImages({
                     uriName: capturedPhoto.uri,
                     name: nameImg,
-                    location: locationName,
+                    location: locationCoor.coords,
                   })
                 );
                 console.log(imagesData);
                 navigation.navigate("Posts");
                 setCapturedPhoto(null);
                 setNameImg(null);
-                setLocationName(null);
+                setLocationCoor(null);
               }}
             >
               <Text
@@ -318,7 +318,10 @@ export default function CreatePostScreen() {
             onPress={async () => {
               if (cameraRef) {
                 const { uri } = await cameraRef.takePictureAsync();
+                const locationPhotos = await Location.getCurrentPositionAsync();
+                console.log(locationPhotos)
                 const photoMain = await MediaLibrary.createAssetAsync(uri);
+                setLocationCoor(locationPhotos)
                 setCapturedPhoto(photoMain);
                 console.log(photoMain);
               }
