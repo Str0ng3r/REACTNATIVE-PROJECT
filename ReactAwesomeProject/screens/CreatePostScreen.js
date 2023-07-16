@@ -13,7 +13,6 @@ import {
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import * as Location from "expo-location";
-import MapView, { Marker } from "react-native-maps";
 import { Camera } from "expo-camera";
 import * as MediaLibrary from "expo-media-library";
 import { useDispatch, useSelector } from "react-redux";
@@ -75,11 +74,7 @@ export default function CreatePostScreen() {
       paddingTop: 15,
       paddingBottom: 15,
       marginBottom: 16,
-    },
-    mapStyle: {
-      width: "90%",
-      height: 100,
-    },
+    }
   });
 
   const styless = StyleSheet.create({
@@ -249,7 +244,7 @@ export default function CreatePostScreen() {
                   setImages({
                     uriName: capturedPhoto.uri,
                     name: nameImg,
-                    location: locationCoor.coords,
+                    location: locationCoor,
                   })
                 );
                 console.log(imagesData);

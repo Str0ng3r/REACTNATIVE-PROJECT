@@ -145,6 +145,10 @@ export default function PostsScreen() {
       alignItems: "center",
       width:'100%'
     },
+    mapStyle: {
+      width: "90%",
+      height: 100,
+    },
   });
   const comm = require("../images/COMM.png");
   const location = require("../images/LOCATION.png");
@@ -191,10 +195,20 @@ export default function PostsScreen() {
                 />
                 <View style={styles.wrapBottomTabImg}>
                   {item.location !== null && (
+                    <TouchableOpacity style={{ width: 24, height: 24 }} onPress={()=> { 
+      const locatForMap = {
+        latitude:item.location.coords.latitude,
+        longitude:item.location.coords.longitude
+      }
+      navigation.navigate('MapScreen',{data:locatForMap})
+    }
+
+      }>
                     <Image
                       source={location}
                       style={{ width: 24, height: 24 }}
                     ></Image>
+                    </TouchableOpacity>
                   )}
                   <Text style={{marginLeft:10}}>{item.name}</Text>
                   <Image source={like} style={{width:24,height:24,marginLeft:20}}></Image>
