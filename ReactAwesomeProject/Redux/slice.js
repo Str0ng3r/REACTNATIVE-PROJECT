@@ -3,7 +3,8 @@ const imagesSlice = createSlice({
 name:'images',
 initialState:{
     images:[],
-    auth:false
+    auth:false,
+    user:null
 },
 reducers:{
     setImages:(state,action)=>{
@@ -11,9 +12,12 @@ reducers:{
     },
     setIsAuth:(state,action)=>{
         state.auth = action.payload
+    },
+    setUser:(state,action)=> {
+state.user = action.payload
     }
 }
 })
 const { actions } = imagesSlice;
 export const mainReducer = imagesSlice.reducer;
-export const { setImages,setIsAuth } = actions;
+export const { setImages,setIsAuth,setUser } = actions;
