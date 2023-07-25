@@ -11,6 +11,7 @@ import {
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
+import { signUpUser } from '../firebase/authoperations';
 export default function RegistrationScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email,setEmail] = useState(null)
@@ -170,9 +171,7 @@ export default function RegistrationScreen() {
               <Text>{passwordVisible ? 'Скрыть' : 'Показать'}</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.buttonRegistr} onPress={() => {
-          navigation.navigate('Login')
-        }}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={signUpUser(email,passwordVal)}>
             <Text style={styles.whiteColor}>Зареєструватися</Text>
           </TouchableOpacity>
           <Text onPress={linkFunc} style={styles.linkColor}>
