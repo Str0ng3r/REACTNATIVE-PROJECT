@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { setUser, setIsAuth } from '../Redux/slice';
-import db from '../../ReactAwesomeProject/firebase/config';
+import app from '../../ReactAwesomeProject/firebase/config';
 
 export const signUpUser = async (email, password) => {
   const auth = getAuth();
