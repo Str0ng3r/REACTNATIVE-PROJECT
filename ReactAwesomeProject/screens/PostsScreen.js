@@ -18,6 +18,7 @@ import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { setIsAuth } from "../Redux/slice";
+import { logOut } from "../firebase/authoperations";
 export default function PostsScreen() {
   const dispatch = useDispatch();
   const dataAuth = useSelector((state) => state.auth);
@@ -159,7 +160,7 @@ export default function PostsScreen() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={linkUnLogin}>
+          <TouchableOpacity onPress={logOut(dispatch)}>
             <Image source={imgLogOut} style={{ width: 24, height: 24 }}></Image>
           </TouchableOpacity>
 

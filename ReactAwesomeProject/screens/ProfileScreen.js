@@ -11,6 +11,8 @@ import {
   Image,
   ScrollView,
 } from "react-native";
+import { logOut } from "../firebase/authoperations";
+import { useDispatch } from "react-redux";
 
 const styles = StyleSheet.create({
   container: {
@@ -116,11 +118,12 @@ fontWeight: '400',
 const comm = require('../images/COMM.png')
 const location = require('../images/LOCATION.png')
 const like = require('../images/LIKE.png')
-const logOut = require('../images/log-out.png')
+const logOuttt = require('../images/log-out.png')
 
 
 export default function ProfileScreen() {
   const navigation = useNavigation()
+  const dispatch = useDispatch()
   const swipeBack = () => {
     navigation.navigate("Posts");
   };
@@ -140,7 +143,7 @@ export default function ProfileScreen() {
             style={styles.imgAvatar}
           ></Image>
           <Text style={styles.mainName}>Natali Romanova</Text>
-          <TouchableOpacity style={styles.buttonLogOut} onPress={swipeBack}><Image source={logOut}></Image></TouchableOpacity>
+          <TouchableOpacity style={styles.buttonLogOut} onPress={logOut(dispatch)}><Image source={logOuttt}></Image></TouchableOpacity>
           <ScrollView style={styles.viewScrollContainer}>
           <View style={styles.contForPublication}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle23.png')}></Image>

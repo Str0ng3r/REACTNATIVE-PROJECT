@@ -3,6 +3,7 @@ import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, si
 import { setUser, setIsAuth } from '../Redux/slice';
 import app from "./config";
 
+
 export const signUpUser = async (email, password) => {
   const auth = getAuth();
   try {
@@ -16,9 +17,9 @@ export const signUpUser = async (email, password) => {
   }
 }
 
-export const signInUser = async (email, password) => {
+export const signInUser = async (email, password,dispatch) => {
   const auth = getAuth();
-  const dispatch = useDispatch(); // Add this line to get access to dispatch
+ // Add this line to get access to dispatch
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
@@ -30,9 +31,8 @@ export const signInUser = async (email, password) => {
   }
 }
 
-export const logOut = async () => {
+export const logOut = async (dispatch) => {
   const auth = getAuth();
-  const dispatch = useDispatch(); // Add this line to get access to dispatch
   try {
     await signOut(auth);
     console.log('YOU ARE LOGOUT');

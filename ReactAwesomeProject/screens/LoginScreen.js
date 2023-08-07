@@ -12,6 +12,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { setIsAuth } from '../Redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
+import { signInUser } from '../firebase/authoperations';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -166,7 +167,7 @@ export default function LoginScreen() {
           </View>
 
 
-          <TouchableOpacity style={styles.buttonRegistr} onPress={linkLogin}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={signInUser(email,passwordVal,dispatch)}>
             <Text style={styles.whiteColor}>Увійти</Text>
           </TouchableOpacity>
 
