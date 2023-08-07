@@ -22,7 +22,7 @@ export const signInUser = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
-    dispatch(setUser(user)); // Dispatch the action to update user state in Redux
+     dispatch(setUser(user)); // Dispatch the action to update user state in Redux
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
