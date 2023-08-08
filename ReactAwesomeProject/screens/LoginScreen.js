@@ -12,7 +12,7 @@ import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { setIsAuth } from '../Redux/slice';
 import { useDispatch, useSelector } from 'react-redux';
-import { signInUser } from '../firebase/authoperations';
+import { signInUser } from '../Redux/authoperations';
 
 export default function LoginScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);

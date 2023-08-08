@@ -18,7 +18,7 @@ import { SvgXml } from "react-native-svg";
 import { useNavigation } from "@react-navigation/native";
 import { useEffect } from "react";
 import { setIsAuth } from "../Redux/slice";
-import { logOut } from "../firebase/authoperations";
+import { logOut } from "../Redux/authoperations";
 export default function PostsScreen() {
   const dispatch = useDispatch();
   const dataAuth = useSelector((state) => state.auth);

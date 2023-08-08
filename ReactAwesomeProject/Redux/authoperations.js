@@ -1,14 +1,15 @@
 import { useDispatch } from "react-redux";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
-import { setUser, setIsAuth } from '../Redux/slice';
-import app from "./config";
+import { setUser, setIsAuth } from './slice';
+import auth from "../firebase/auth";
+import app from "../firebase/config";
 
 
-export const signUpUser = async (email, password) => {
-  const auth = getAuth();
+export const signUpUser = async (email, password,dispatch) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
+    dispatch(setUser(user))
     console.log(user);
   } catch (error) {
     const errorCode = error.code;
@@ -18,7 +19,6 @@ export const signUpUser = async (email, password) => {
 }
 
 export const signInUser = async (email, password,dispatch) => {
-  const auth = getAuth();
  // Add this line to get access to dispatch
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -32,7 +32,6 @@ export const signInUser = async (email, password,dispatch) => {
 }
 
 export const logOut = async (dispatch) => {
-  const auth = getAuth();
   try {
     await signOut(auth);
     console.log('YOU ARE LOGOUT');

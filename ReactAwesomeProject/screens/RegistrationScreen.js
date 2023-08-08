@@ -11,13 +11,15 @@ import {
 import React, { useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
-import { signUpUser } from '../firebase/authoperations';
+import { signUpUser } from '../Redux/authoperations';
+import { useDispatch } from 'react-redux';
 export default function RegistrationScreen() {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [email,setEmail] = useState(null)
   const [login,setLogin] = useState(null)
   const [passwordVal, setPasswordVal] = useState('');
   const navigation = useNavigation()
+  const dispatch = useDispatch()
   const styles = StyleSheet.create({
     container: {
       width: '100%',
@@ -171,7 +173,7 @@ export default function RegistrationScreen() {
               <Text>{passwordVisible ? 'Скрыть' : 'Показать'}</Text>
             </TouchableOpacity>
           </View>
-          <TouchableOpacity style={styles.buttonRegistr} onPress={signUpUser(email,passwordVal)}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={signUpUser(email,passwordVal,dispatch)}>
             <Text style={styles.whiteColor}>Зареєструватися</Text>
           </TouchableOpacity>
           <Text onPress={linkFunc} style={styles.linkColor}>

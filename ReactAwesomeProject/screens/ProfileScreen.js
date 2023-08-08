@@ -11,7 +11,7 @@ import {
   Image,
   ScrollView,
 } from "react-native";
-import { logOut } from "../firebase/authoperations";
+import { logOut } from "../Redux/authoperations"; 
 import { useDispatch } from "react-redux";
 
 const styles = StyleSheet.create({
