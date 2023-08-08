@@ -160,7 +160,7 @@ export default function PostsScreen() {
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <View style={styles.container}>
         <View style={styles.header}>
-          <TouchableOpacity onPress={logOut(dispatch)}>
+          <TouchableOpacity onPress={() =>{logOut(dispatch)}}>
             <Image source={imgLogOut} style={{ width: 24, height: 24 }}></Image>
           </TouchableOpacity>
 

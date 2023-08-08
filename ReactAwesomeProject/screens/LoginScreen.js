@@ -167,7 +167,7 @@ export default function LoginScreen() {
           </View>
 
 
-          <TouchableOpacity style={styles.buttonRegistr} onPress={signInUser(email,passwordVal,dispatch)}>
+          <TouchableOpacity style={styles.buttonRegistr} onPress={()=> {signInUser(email,passwordVal,dispatch)}}>
             <Text style={styles.whiteColor}>Увійти</Text>
           </TouchableOpacity>
 

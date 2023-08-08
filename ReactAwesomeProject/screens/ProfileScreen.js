@@ -143,7 +143,7 @@ export default function ProfileScreen() {
             style={styles.imgAvatar}
           ></Image>
           <Text style={styles.mainName}>Natali Romanova</Text>
-          <TouchableOpacity style={styles.buttonLogOut} onPress={logOut(dispatch)}><Image source={logOuttt}></Image></TouchableOpacity>
+          <TouchableOpacity style={styles.buttonLogOut} onPress={()=> {logOut(dispatch)}}><Image source={logOuttt}></Image></TouchableOpacity>
           <ScrollView style={styles.viewScrollContainer}>
           <View style={styles.contForPublication}>
               <Image style={styles.imgPublic} source={require('../images/Rectangle23.png')}></Image>
